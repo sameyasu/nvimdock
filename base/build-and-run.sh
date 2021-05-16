@@ -12,6 +12,7 @@ docker build \
 docker run \
     --rm \
     -it \
+    --detach-keys "ctrl-\\" \
     -e TERM \
     --name ${CONTAINER_NAME} \
     ${IMAGE_NAME}
