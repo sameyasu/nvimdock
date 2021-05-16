@@ -26,10 +26,8 @@ ENV GROUP vimdock
 ENV HOME /home/${USER}
 
 ARG UID=1000
-ARG GID=1000
 
-RUN groupadd -g ${GID} ${GROUP} && \
-    useradd -u ${UID} -g ${GID} -G sudo -m ${USER} && \
+RUN useradd -u ${UID} -G sudo -m ${USER} && \
     echo "${USER}:${USER}" | chpasswd
 
 # Copy configs
@@ -60,5 +58,8 @@ RUN nvim --headless \
 
 # neovim: Add reading my configs
 RUN echo 'runtime! myconfig/*.vim' >> ${HOME}/.config/nvim/init.vim
+
+RUN mkdir ${HOME}/work
+WORKDIR ${HOME}/work
 
 CMD ["nvim"]

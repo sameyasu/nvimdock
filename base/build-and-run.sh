@@ -1,11 +1,10 @@
 #!/bin/bash -eu
 
-IMAGE_NAME="nvimdock-"$(id -u)"-"$(id -g)
+IMAGE_NAME="nvimdock-"$(id -u)
 CONTAINER_NAME=${IMAGE_NAME}
 
 docker build \
     --build-arg UID=$(id -u) \
-    --build-arg GID=$(id -g) \
     -t ${IMAGE_NAME} \
     .
 
